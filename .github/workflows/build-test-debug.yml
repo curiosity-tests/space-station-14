@@ -40,7 +40,7 @@ on:
     branches: [ master, staging, stable ]
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event_name == 'pull_request' && github.event.pull_request.number || github.ref }}
+  group: ${{ github.workflow }}-${{ github.event_name == 'pull_request' && github.event.pull_request.number || github.ref }}-${{ inputs.leg || github.event_name }}
   cancel-in-progress: ${{ github.event_name != 'merge_group' }}
 
 run-name: "Build & Test Debug ${{ inputs.leg || 'push' }} ${{ inputs.racecar_run }}"
